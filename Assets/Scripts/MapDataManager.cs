@@ -11,9 +11,9 @@ public class MapDataManager : MonoBehaviour
         public int size;
     }
 
+    public Transform poolHolder;
     public static Dictionary<string, Queue<GameObject>> poolDictionary;
     public List<Pool> pools;
-
     public static List<Transform> enemyUnits;
     public static List<Transform> enemyBuildings;
     public static List<Transform> playerUnits;
@@ -26,13 +26,18 @@ public class MapDataManager : MonoBehaviour
         enemyBuildings = new List<Transform>();
         playerUnits = new List<Transform>();
         playerBuildings = new List<Transform>();
+        CreatePools();
+    }
 
-        foreach(Pool pool in pools)
+    private void CreatePools()
+    {
+        foreach (Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
-            for(int i=0; i < pool.size; i++)
+            for (int i = 0; i < pool.size; i++)
             {
                 var obj = Instantiate(pool.prefab);
+                obj.transform.parent = poolHolder;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -57,7 +62,6 @@ public class MapDataManager : MonoBehaviour
     {
         return FindClosest(targetTree, origin);
     }
-
     private static GameObject FindClosest(List<Transform> targetTree, Transform origin)
     {
         if (targetTree.Count > 0)
