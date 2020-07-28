@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1573657159
+    locked: 0
+  - name: BuildGrid
+    uniqueID: 2752093573
+    locked: 0
+  - name: Buildings
+    uniqueID: 3893223027
+    locked: 0
+  - name: Units
+    uniqueID: 1315998357
+    locked: 0
+  - name: BuildingCursor
+    uniqueID: 1046898151
+    locked: 0
+  - name: UI
+    uniqueID: 4208706689
+    locked: 0

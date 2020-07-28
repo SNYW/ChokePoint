@@ -1,0 +1,3 @@
+Map Bounds - 
+	Min: X -28, Y -5
+	Max: X 28, Y 5
