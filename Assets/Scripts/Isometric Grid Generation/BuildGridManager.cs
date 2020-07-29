@@ -73,7 +73,7 @@ public class BuildGridManager : MonoBehaviour
     {
         List<GridTile> neighbours = new List<GridTile>();
         neighbours.Add(GetTile(grid.GetCellCenterLocal(grid.LocalToCell(origin.transform.position))));
-        Debug.Log("Origin = " + grid.GetCellCenterLocal(grid.LocalToCell(origin.transform.position)));
+        //Debug.Log("Origin = " + grid.GetCellCenterLocal(grid.LocalToCell(origin.transform.position)));
         if (origin != null)
         {
             Collider2D[] coll = Physics2D.OverlapCircleAll(origin.transform.position, 0.6f);

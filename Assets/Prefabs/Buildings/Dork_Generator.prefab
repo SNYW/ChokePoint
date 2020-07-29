@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4513560358358614667}
   - component: {fileID: 4161282473939048864}
-  - component: {fileID: 1964088562650380959}
+  - component: {fileID: 6026901796711681771}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Dork_Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -401744269
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0de7b6cb80d14d244b824814c166ec7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71e78c5ff07e1e94cb9846ee411bccc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1964088562650380959
+--- !u!114 &6026901796711681771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,13 +91,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4513560358358614666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d74e01f44c7563744b09c995493e5e53, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cd26424a40faf543af0aed52b44ed03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Debug Spawner
+  buildingName: Mana Generator
   health: 100
   buildCost: 10
-  unitName: DebugUnit
-  spawnCooldown: 1
-  playerUnit: 1
-  cursorImage: {fileID: 0}
+  rateIncrease: 1
+  storageIncrease: 1

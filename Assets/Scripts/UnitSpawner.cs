@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-public class UnitSpawner : MonoBehaviour
+public class UnitSpawner : Building
 {
     public string unitName;
     public float spawnCooldown;
     public bool playerUnit;
+    public Sprite cursorImage;
 
     private float currentCD;
     private void Start()

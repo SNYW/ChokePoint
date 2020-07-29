@@ -431,8 +431,8 @@ MonoBehaviour:
   moveSpeed: 1
   maxHealth: 100
   currentHealth: 100
-  attackDamage: 20
-  attackSpeed: 2
+  attackDamage: 100
+  attackSpeed: 0.5
   attackRange: 0.5
   aggroRange: 2
   healthBar: {fileID: 5939168073737428633}
@@ -473,7 +473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4697f585b672e294ea878da01ed542ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!1 &8309043434521633333
 GameObject:
   m_ObjectHideFlags: 0

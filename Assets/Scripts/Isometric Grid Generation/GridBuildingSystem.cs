@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
 public class GridBuildingSystem : MonoBehaviour
 {
+    public PlayerEconomy playerEconomy;
     public Grid grid;
     public Transform buildCursor;
+    public SpriteRenderer buildCursorSprite;
     public GameObject selectedBuilding;
     public float buildAreaRadius;
     public LayerMask mask;
@@ -27,7 +26,7 @@ public class GridBuildingSystem : MonoBehaviour
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int gridPos = (grid.LocalToCell(mousePosition));
-        Debug.Log(BuildGridManager.gridTiles.ContainsKey(grid.GetCellCenterLocal(gridPos)));
+        //Debug.Log(BuildGridManager.gridTiles.ContainsKey(grid.GetCellCenterLocal(gridPos)));
         if (BuildGridManager.gridTiles.ContainsKey(grid.GetCellCenterLocal(gridPos)))
         {
             currentTile = BuildGridManager.GetTile(grid.GetCellCenterLocal(gridPos));
@@ -92,6 +91,10 @@ public class GridBuildingSystem : MonoBehaviour
     {
         this.selectedBuilding = toBuild;
     }
+    public void SetCursorImage(Sprite sprite)
+    {
+       buildCursorSprite.sprite = sprite;
+    }
 
     public void SetDeleteMode()
     {
@@ -107,12 +110,17 @@ public class GridBuildingSystem : MonoBehaviour
     private void Build()
     {
         var tile = BuildGridManager.GetTile(grid.GetCellCenterLocal(gridPos));
-        if (tile.buildable)
+        if (tile.buildable && playerEconomy.currentResource - selectedBuilding.GetComponent<Building>().buildCost >= 0)
         {
             var building = Instantiate(selectedBuilding, (Vector2)grid.GetCellCenterLocal(gridPos), quaternion.identity);
             building.GetComponentInChildren<SpriteRenderer>().sortingOrder = (sortingOrderBase - gridPos.x) - gridPos.y;
+            playerEconomy.currentResource -= building.GetComponent<Building>().buildCost;
             tile.building = building;
             tile.buildable = false;
+        }
+        else
+        {
+            ResetBuildState();
         }
     }
     private void HideBuildArea()
@@ -148,7 +156,7 @@ public class GridBuildingSystem : MonoBehaviour
         BuildGridManager.GetTile(position).DeleteBuilding();
     }
 
-    private void ResetBuildState()
+    public void ResetBuildState()
     {
         selectedBuilding = null;
         HideBuildArea();
