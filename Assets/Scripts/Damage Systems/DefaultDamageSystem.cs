@@ -8,7 +8,11 @@ public class DefaultDamageSystem : DamageSystem
     }
     public override void DealDamage()
     {
-        unit.target.GetComponent<DamageSystem>().TakeDamage(unit.attackDamage);
+        var ds = unit.target.GetComponent<DamageSystem>();
+        if(ds != null)
+        {
+            ds.TakeDamage(unit.attackDamage);
+        }
     }
 
     public override void TakeDamage(int amount)

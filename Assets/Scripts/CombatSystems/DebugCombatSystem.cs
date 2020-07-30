@@ -62,13 +62,27 @@ public class DebugCombatSystem : CombatSystem
 
     private GameObject ClosestBetween(GameObject obj1, GameObject obj2)
     {
-        if(Vector2.Distance(transform.position, obj1.transform.position) < Vector2.Distance(transform.position, obj2.transform.position))
+        if (obj1 != null && obj2 != null)
         {
-            return obj1;
+            if (Vector2.Distance(transform.position, obj1.transform.position) < Vector2.Distance(transform.position, obj2.transform.position))
+            {
+                return obj1;
+            }
+            else
+            {
+                return obj2;
+            }
         }
         else
         {
-            return obj2;
+            if (obj1 == null)
+            {
+                return obj2;
+            }
+            else
+            {
+                return obj1;
+            }
         }
     }
 

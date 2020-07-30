@@ -13,6 +13,7 @@ public class Building : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        healthbar.gameObject.SetActive(false);
     }
 
     private void ManageHealthBar()
@@ -22,6 +23,7 @@ public class Building : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        healthbar.gameObject.SetActive(true);
         if (currentHealth - amount <= 0)
         {
             Die();

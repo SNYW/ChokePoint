@@ -7,6 +7,7 @@ public class BuildingDamageSystem : DamageSystem
     private void Start()
     {
         building = GetComponent<Building>();
+        building.healthbar.gameObject.SetActive(false);
     }
     public override void DealDamage()
     {
@@ -15,6 +16,7 @@ public class BuildingDamageSystem : DamageSystem
 
     public override void TakeDamage(int amount)
     {
+        building.healthbar.gameObject.SetActive(true);
         building.TakeDamage(amount);
     }
 }

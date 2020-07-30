@@ -13,8 +13,6 @@ public class EnemyBase : MonoBehaviour
     private float currentBuildCooldown;
     void Start()
     {
-        MapDataManager.playerBuildings.Add(GameObject.Find("PlayerBase").transform);
-        MapDataManager.enemyBuildings.Add(transform);
         currentBuildCooldown = buildCooldown;
     }
 

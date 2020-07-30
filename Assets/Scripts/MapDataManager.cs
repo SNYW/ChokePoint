@@ -26,6 +26,8 @@ public class MapDataManager : MonoBehaviour
         enemyBuildings = new List<Transform>();
         playerUnits = new List<Transform>();
         playerBuildings = new List<Transform>();
+        playerBuildings.Add(GameObject.Find("PlayerBase").transform);
+        enemyBuildings.Add(GameObject.Find("EnemyBase").transform);
         CreatePools();
     }
 
