@@ -13,6 +13,8 @@ public class EnemyBase : MonoBehaviour
     private float currentBuildCooldown;
     void Start()
     {
+        MapDataManager.playerBuildings.Add(GameObject.Find("PlayerBase").transform);
+        MapDataManager.enemyBuildings.Add(transform);
         currentBuildCooldown = buildCooldown;
     }
 
@@ -36,6 +38,7 @@ public class EnemyBase : MonoBehaviour
         Vector2 randomBuildLocation = new Vector2(Random.Range(buildAreaMin.x, buildAreaMax.x), Random.Range(buildAreaMin.y, buildAreaMax.y));
         Vector3Int gridPos = (grid.WorldToCell(randomBuildLocation));
         var buildLocation = (Vector2)grid.GetCellCenterLocal(gridPos);
-        Instantiate(building, BuildGridManager.GetTile(buildLocation).transform.position, Quaternion.identity);
+        var instBuilding = Instantiate(building, BuildGridManager.GetTile(buildLocation).transform.position, Quaternion.identity);
+        MapDataManager.enemyBuildings.Add(instBuilding.transform);
     }
 }

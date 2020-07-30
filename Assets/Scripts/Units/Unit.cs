@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
     public float moveSpeed;
     public float maxHealth;
     public float currentHealth;
-    public float attackDamage;
+    public int attackDamage;
     public float attackSpeed;
     public float attackRange;
     public float aggroRange;
@@ -28,11 +28,6 @@ public class Unit : MonoBehaviour
     }
     void Update()
     {
-        healthBar.value = (currentHealth / maxHealth);
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
         movementSystem.Move();
         combatSystem.ManageAttack();
     }

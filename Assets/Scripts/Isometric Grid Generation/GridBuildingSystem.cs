@@ -113,6 +113,15 @@ public class GridBuildingSystem : MonoBehaviour
         if (tile.buildable && playerEconomy.currentResource - selectedBuilding.GetComponent<Building>().buildCost >= 0)
         {
             var building = Instantiate(selectedBuilding, (Vector2)grid.GetCellCenterLocal(gridPos), quaternion.identity);
+            var buildingComponent = building.GetComponent<Building>();
+            if (buildingComponent.playerOwned)
+            {
+                MapDataManager.playerBuildings.Add(building.transform);
+            }
+            else
+            {
+                MapDataManager.enemyBuildings.Add(building.transform);
+            }
             building.GetComponentInChildren<SpriteRenderer>().sortingOrder = (sortingOrderBase - gridPos.x) - gridPos.y;
             playerEconomy.currentResource -= building.GetComponent<Building>().buildCost;
             tile.building = building;

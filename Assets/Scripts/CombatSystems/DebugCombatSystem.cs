@@ -47,13 +47,29 @@ public class DebugCombatSystem : CombatSystem
     {
         if (unit.playerOwned)
         {
-            return MapDataManager.GetClosestTarget(MapDataManager.enemyUnits, transform);
+            var closestUnit =  MapDataManager.GetClosestTarget(MapDataManager.enemyUnits, transform);
+            var closestBuilding = MapDataManager.GetClosestTarget(MapDataManager.enemyBuildings, transform);
+            return ClosestBetween(closestBuilding, closestUnit);
         }
         else
         {
-            return MapDataManager.GetClosestTarget(MapDataManager.playerUnits, transform);
+            var closestUnit =  MapDataManager.GetClosestTarget(MapDataManager.playerUnits, transform);
+            var closestBuilding = MapDataManager.GetClosestTarget(MapDataManager.playerBuildings, transform); 
+            return ClosestBetween(closestBuilding, closestUnit);
         }
        
+    }
+
+    private GameObject ClosestBetween(GameObject obj1, GameObject obj2)
+    {
+        if(Vector2.Distance(transform.position, obj1.transform.position) < Vector2.Distance(transform.position, obj2.transform.position))
+        {
+            return obj1;
+        }
+        else
+        {
+            return obj2;
+        }
     }
 
     public override bool CanSee(Transform target)

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class DefaultDamageSystem : DamageSystem
 {
     Unit unit;
@@ -14,8 +11,13 @@ public class DefaultDamageSystem : DamageSystem
         unit.target.GetComponent<DamageSystem>().TakeDamage(unit.attackDamage);
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(int amount)
     {
-        unit.currentHealth -= amount;
+        if (unit.gameObject.activeSelf)
+        {
+            unit.currentHealth -= amount;
+            if (unit.currentHealth <= 0) { unit.Die(); }
+            unit.healthBar.value = unit.currentHealth / unit.maxHealth;
+        }
     }
 }
