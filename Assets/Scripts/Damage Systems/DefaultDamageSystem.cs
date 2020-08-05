@@ -6,6 +6,7 @@ public class DefaultDamageSystem : DamageSystem
     {
         unit = GetComponent<Unit>();
     }
+
     public override void DealDamage()
     {
         var ds = unit.target.GetComponent<DamageSystem>();

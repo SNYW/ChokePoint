@@ -1,63 +1,60 @@
 ﻿using UnityEngine;
 
-public class DebugCombatSystem : CombatSystem
+public class BunkerCombatSystem : CombatSystem
 {
-    private Unit unit;
+    private Bunker bunker;
     private DamageSystem damageSystem;
     private float attackCooldown;
+
     private void Start()
     {
-        unit = GetComponent<Unit>();
-        damageSystem = GetComponent<DamageSystem>();
-        attackCooldown = unit.attackSpeed;
+        bunker = GetComponent<Bunker>();
+        damageSystem = GetComponent<BunkerDamageSystem>();
+        attackCooldown = bunker.attackCooldown;
     }
-    public override void ManageAttack()
-    {
-        if (GetClosestTarget() != null && CanSee(GetClosestTarget().transform) && GetClosestTarget().activeSelf)
-        {
-            unit.target = GetClosestTarget();
-            if (CanAttack(unit.target.transform) && unit.target != null)
-            {
-                attackCooldown = unit.attackSpeed;
-                Attack();
-            }
-        }
-        else
-        {
-            unit.target = null;
-        }
-    }
+
     public override void Attack()
     {
         damageSystem.DealDamage();
     }
 
+    public override void ManageAttack()
+    {
+        if (GetClosestTarget() != null && CanSee(GetClosestTarget().transform) && GetClosestTarget().activeSelf)
+        {
+            bunker.target = GetClosestTarget();
+            if (CanAttack(bunker.target.transform) && bunker.target != null)
+            {
+                attackCooldown = bunker.attackCooldown;
+                Attack();
+            }
+        }
+        else
+        {
+            bunker.target = null;
+        }
+    }
     public override bool CanAttack(Transform target)
     {
         attackCooldown -= Time.deltaTime;
-        return attackCooldown <= 0 && Vector2.Distance(transform.position, target.position) < unit.attackRange;
-    }
-
-    public override GameObject GetTarget()
-    {
-        return GetClosestTarget();
+        return attackCooldown <= 0 && Vector2.Distance(transform.position, target.position) < bunker.range;
     }
 
     protected GameObject GetClosestTarget()
     {
-        if (unit.playerOwned)
+        if (bunker.playerOwned)
         {
-            var closestUnit =  MapDataManager.GetClosestTarget(MapDataManager.enemyUnits, transform);
+            var closestUnit = MapDataManager.GetClosestTarget(MapDataManager.enemyUnits, transform);
             var closestBuilding = MapDataManager.GetClosestTarget(MapDataManager.enemyBuildings, transform);
             return ClosestBetween(closestBuilding, closestUnit);
         }
         else
         {
-            var closestUnit =  MapDataManager.GetClosestTarget(MapDataManager.playerUnits, transform);
-            var closestBuilding = MapDataManager.GetClosestTarget(MapDataManager.playerBuildings, transform); 
+            var closestUnit = MapDataManager.GetClosestTarget(MapDataManager.playerUnits, transform);
+            var closestBuilding = MapDataManager.GetClosestTarget(MapDataManager.playerBuildings, transform);
             return ClosestBetween(closestBuilding, closestUnit);
         }
-       
+
     }
 
     private GameObject ClosestBetween(GameObject obj1, GameObject obj2)
@@ -88,6 +85,11 @@ public class DebugCombatSystem : CombatSystem
 
     public override bool CanSee(Transform target)
     {
-        return Vector2.Distance(transform.position, target.position) < unit.aggroRange;
+        return Vector2.Distance(transform.position, target.position) < bunker.range;
+    }
+
+    public override GameObject GetTarget()
+    {
+        return GetClosestTarget();
     }
 }
