@@ -1237,9 +1237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 934646806}
-  building: {fileID: 4513560358358614666, guid: b601b291854f6024a9ea37116ae5a017,
-    type: 3}
-  buildCooldown: 10
+  waveSet: {fileID: 11400000, guid: 8be4b79775c016e48bae4ad56b48edd0, type: 2}
   buildAreaMax: {x: 27, y: 4}
   buildAreaMin: {x: 2, y: -4}
 --- !u!212 &1020851093
@@ -2539,6 +2537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1915621728}
   - component: {fileID: 1915621727}
+  - component: {fileID: 1915621729}
   m_Layer: 0
   m_Name: MapDataManager
   m_TagString: Untagged
@@ -2583,6 +2582,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915621729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915621726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603a8f2d63dfdaa47b6108dd0a25cf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSpawnTimer: 5
 --- !u!4 &7981251298973041646
 Transform:
   m_ObjectHideFlags: 0

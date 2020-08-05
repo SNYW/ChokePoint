@@ -252,7 +252,7 @@ MonoBehaviour:
   healthbar: {fileID: 3794657742019170390}
   playerEconomy: {fileID: 0}
   rateIncrease: 1
-  storageIncrease: 1
+  storageIncrease: 5
 --- !u!114 &4712759602381518529
 MonoBehaviour:
   m_ObjectHideFlags: 0

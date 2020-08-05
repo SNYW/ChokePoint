@@ -45,6 +45,7 @@ public class Building : MonoBehaviour
         {
             MapDataManager.enemyBuildings.Remove(transform);
         }
-        Destroy(this.gameObject);
+        var tile = BuildGridManager.GetTile(transform.position);
+        tile.DeleteBuilding();
     }
 }

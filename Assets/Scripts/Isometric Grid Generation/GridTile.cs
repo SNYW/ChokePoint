@@ -40,6 +40,14 @@ public class GridTile : MonoBehaviour
     {
         if (!buildable)
         {
+            if (MapDataManager.enemyBuildings.Contains(building.transform))
+            {
+                MapDataManager.enemyBuildings.Remove(building.transform);
+            }
+            else if(MapDataManager.playerBuildings.Contains(building.transform))
+            {
+                MapDataManager.playerBuildings.Remove(building.transform);
+            }
             buildable = true;
             Destroy(building);
             building = null;

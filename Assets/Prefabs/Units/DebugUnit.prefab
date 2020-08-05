@@ -432,7 +432,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   attackDamage: 20
-  attackSpeed: 2
+  attackSpeed: 1
   attackRange: 0.5
   aggroRange: 2
   healthBar: {fileID: 5939168073737428633}

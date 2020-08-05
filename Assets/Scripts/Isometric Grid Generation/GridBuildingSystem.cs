@@ -1,5 +1,6 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GridBuildingSystem : MonoBehaviour
 {
@@ -157,7 +158,7 @@ public class GridBuildingSystem : MonoBehaviour
                 canBuild = false;
             }
         }
-        return canBuild;
+        return canBuild && !EventSystem.current.IsPointerOverGameObject();
     }
 
     private void DeleteBuilding(Vector2 position)

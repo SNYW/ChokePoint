@@ -13,7 +13,7 @@ public class UnitSpawner : Building
         currentCD = spawnCooldown;
     }
 
-    private void Update()
+    /*private void Update()
     {
         ManageCooldown();
     }
@@ -25,9 +25,9 @@ public class UnitSpawner : Building
             SpawnUnit();
             currentCD = spawnCooldown;
         }
-    }
+    }*/
 
-    private void SpawnUnit()
+    public void SpawnUnit()
     {
         var unit = Instantiate(MapDataManager.poolDictionary[unitName].Dequeue(), transform.position, Quaternion.identity);
         unit.SetActive(true);

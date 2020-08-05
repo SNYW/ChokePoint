@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09f38d6c3b763d46a915f3946251ad8, type: 3}
+  m_Name: TestWaveSet
+  m_EditorClassIdentifier: 
+  waves:
+  - {fileID: 11400000, guid: 5fe0b08122feda9478756a9cf3637e7e, type: 2}
+  - {fileID: 11400000, guid: e1065bed1a02c9743bf00e0b7f82bbcb, type: 2}
