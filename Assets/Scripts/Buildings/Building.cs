@@ -35,7 +35,7 @@ public class Building : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         if (playerOwned)
         {
@@ -47,5 +47,6 @@ public class Building : MonoBehaviour
         }
         var tile = BuildGridManager.GetTile(transform.position);
         tile.DeleteBuilding();
+        Destroy(gameObject);
     }
 }

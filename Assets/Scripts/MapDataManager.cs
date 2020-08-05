@@ -14,20 +14,16 @@ public class MapDataManager : MonoBehaviour
     public Transform poolHolder;
     public static Dictionary<string, Queue<GameObject>> poolDictionary;
     public List<Pool> pools;
-    public static List<Transform> enemyUnits;
-    public static List<Transform> enemyBuildings;
-    public static List<Transform> playerUnits;
-    public static List<Transform> playerBuildings;
+    public static List<Transform> enemyUnits = new List<Transform>();
+    public static List<Transform> enemyBuildings = new List<Transform>();
+    public static List<Transform> playerUnits = new List<Transform>();
+    public static List<Transform> playerBuildings = new List<Transform>();
 
     private void Start()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        enemyUnits = new List<Transform>();
-        enemyBuildings = new List<Transform>();
-        playerUnits = new List<Transform>();
-        playerBuildings = new List<Transform>();
-        playerBuildings.Add(GameObject.Find("PlayerBase").transform);
-        enemyBuildings.Add(GameObject.Find("EnemyBase").transform);
+        Add(playerBuildings, GameObject.Find("PlayerBase").transform);
+        Add(enemyBuildings, GameObject.Find("EnemyBase").transform);
         CreatePools();
     }
 
@@ -60,9 +56,17 @@ public class MapDataManager : MonoBehaviour
             targetList.Add(objectToAdd);
         }
     }
-    public static GameObject GetClosestTarget(List<Transform> targetTree, Transform origin)
+    public static GameObject GetClosestTarget(List<Transform> targetList, Transform origin)
     {
-        return FindClosest(targetTree, origin);
+        if (targetList != null)
+        {
+            return FindClosest(targetList, origin);
+        }
+        else
+        {
+            targetList = new List<Transform>();
+            return null;
+        }
     }
     private static GameObject FindClosest(List<Transform> targetTree, Transform origin)
     {

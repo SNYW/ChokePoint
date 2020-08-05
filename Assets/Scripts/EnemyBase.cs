@@ -41,7 +41,7 @@ public class EnemyBase : MonoBehaviour
             Vector3Int gridPos = (grid.WorldToCell(randomBuildLocation));
             var buildLocation = (Vector2)grid.GetCellCenterLocal(gridPos);
             var instBuilding = Instantiate(building, BuildGridManager.GetTile(buildLocation).transform.position, Quaternion.identity);
-            MapDataManager.enemyBuildings.Add(instBuilding.transform);
+            MapDataManager.Add(MapDataManager.enemyBuildings, instBuilding.transform);
         }
         buildCooldown = GetWaveCooldown();
         waveIndex++;

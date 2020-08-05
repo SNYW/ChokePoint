@@ -27,4 +27,16 @@ public class Bunker : Building
         combatSystem.ManageAttack();
     }
 
+    public new void Die()
+    {
+        if (playerOwned)
+        {
+            MapDataManager.playerBuildings.Remove(transform);
+        }
+        else
+        {
+            MapDataManager.enemyBuildings.Remove(transform);
+        }
+        Destroy(gameObject);
+    }
 }

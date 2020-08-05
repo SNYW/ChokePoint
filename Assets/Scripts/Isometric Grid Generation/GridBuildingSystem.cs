@@ -117,11 +117,11 @@ public class GridBuildingSystem : MonoBehaviour
             var buildingComponent = building.GetComponent<Building>();
             if (buildingComponent.playerOwned)
             {
-                MapDataManager.playerBuildings.Add(building.transform);
+                MapDataManager.Add(MapDataManager.playerBuildings, building.transform);
             }
             else
             {
-                MapDataManager.enemyBuildings.Add(building.transform);
+                MapDataManager.Add(MapDataManager.enemyBuildings, building.transform);
             }
             building.GetComponentInChildren<SpriteRenderer>().sortingOrder = (sortingOrderBase - gridPos.x) - gridPos.y;
             playerEconomy.currentResource -= building.GetComponent<Building>().buildCost;
