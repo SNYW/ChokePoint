@@ -177,7 +177,7 @@ MonoBehaviour:
   buildCost: 10
   healthbar: {fileID: 8608327047027583817}
   unitName: DebugUnit
-  spawnCooldown: 1
+  spawnCooldown: 5
   playerUnit: 1
   cursorImage: {fileID: 0}
 --- !u!114 &-5796944987391581979

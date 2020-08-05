@@ -1239,7 +1239,7 @@ MonoBehaviour:
   grid: {fileID: 934646806}
   building: {fileID: 4513560358358614666, guid: b601b291854f6024a9ea37116ae5a017,
     type: 3}
-  buildCooldown: 3
+  buildCooldown: 10
   buildAreaMax: {x: 27, y: 4}
   buildAreaMin: {x: 2, y: -4}
 --- !u!212 &1020851093
