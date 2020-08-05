@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class BuildingDamageSystem : DamageSystem
 {
     private Building building;
@@ -11,12 +10,14 @@ public class BuildingDamageSystem : DamageSystem
     }
     public override void DealDamage()
     {
-       //Buildings Don't Attack Yet
     }
 
     public override void TakeDamage(int amount)
     {
         building.healthbar.gameObject.SetActive(true);
-        building.TakeDamage(amount);
+        building.currentHealth -= amount;
+        if (building.currentHealth <= 0) { building.Die(); }
+        Debug.Log(building.currentHealth / building.maxHealth);
+        building.healthbar.value = building.currentHealth / building.maxHealth;
     }
 }

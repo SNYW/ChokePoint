@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7594d7d91cc1764459171999f4b361b6, type: 3}
   m_Name: Wave2
   m_EditorClassIdentifier: 
-  timeToNext: 10
+  timeToNext: 4
   buildings:
   - {fileID: 4513560358358614666, guid: b601b291854f6024a9ea37116ae5a017, type: 3}
   - {fileID: 4513560358358614666, guid: 80ce8a97bca430a4bafe46debf0a0053, type: 3}

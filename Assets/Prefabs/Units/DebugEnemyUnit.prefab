@@ -380,7 +380,7 @@ MonoBehaviour:
   playerOwned: 0
   unitName: DebugEnemyUnit
   moveSpeed: 1
-  maxHealth: 100
+  maxHealth: 130
   currentHealth: 100
   attackDamage: 20
   attackSpeed: 1

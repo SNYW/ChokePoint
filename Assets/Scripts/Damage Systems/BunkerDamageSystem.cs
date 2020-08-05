@@ -38,12 +38,8 @@ public class BunkerDamageSystem : DamageSystem
     public override void TakeDamage(int amount)
     {
         bunker.healthbar.gameObject.SetActive(true);
-        bunker.TakeDamage(amount);
         bunker.currentHealth -= amount;
-        if (bunker.currentHealth <= 0) 
-        {
-            bunker.Die(); 
-        }
-        bunker.healthbar.value = bunker.currentHealth / bunker.maxHealth *0.1f;
+        if (bunker.currentHealth <= 0) { bunker.Die(); }
+        bunker.healthbar.value = bunker.currentHealth / bunker.maxHealth;
     }
 }
