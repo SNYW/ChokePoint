@@ -8,7 +8,7 @@ public class BunkerDamageSystem : DamageSystem
     {
         bunker = GetComponent<Bunker>();
     }
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     { 
         Gizmos.color = Color.red;
         if(bunker.target != null)

@@ -9,7 +9,7 @@ public class BuildGridManager : MonoBehaviour
     public Vector2 minBounds;
     public Vector2 maxBounds;
     private static Grid grid;
-    public static Dictionary<Vector2,GameObject> gridTiles;
+    public static Dictionary<Vector3 ,GameObject> gridTiles;
 
     private void Awake()
     {
@@ -23,17 +23,25 @@ public class BuildGridManager : MonoBehaviour
 
     public void GenerateBuildGrid()
     {
-        gridTiles = new Dictionary<Vector2, GameObject>();
+        gridTiles = new Dictionary<Vector3, GameObject>();
         ClearGrid();
         grid = GetComponent<Grid>();
+        Debug.Log(minBounds.x +" "+ maxBounds.x);
+
+        Debug.Log(minBounds.y + " " + maxBounds.y);
         for (float xIndex = minBounds.x; xIndex < maxBounds.x; xIndex += grid.cellSize.x)
         {
-            for (float yIndex = minBounds.y; yIndex < maxBounds.y; yIndex += grid.cellSize.y)
+            for (float zIndex = minBounds.y; zIndex < maxBounds.y; zIndex += grid.cellSize.y)
             {
-                Vector3Int gridPos = (grid.WorldToCell(new Vector2(xIndex, yIndex)));
-                Vector3Int diagGridPos = (grid.WorldToCell(new Vector2(xIndex+(grid.cellSize.x/2), yIndex + (grid.cellSize.y / 2))));
-                var mid = Instantiate(gridTile, (Vector2)grid.GetCellCenterWorld(gridPos), Quaternion.identity, tileContainer);
-                var diag = Instantiate(gridTile, (Vector2)grid.GetCellCenterWorld(diagGridPos), Quaternion.identity, tileContainer);
+               // Debug.Log(new Vector3(xIndex, 0, zIndex));
+                Vector3Int gridPos = (grid.WorldToCell(new Vector3(xIndex, 0, zIndex)));
+                Vector3Int diagGridPos = (grid.WorldToCell(new Vector3(xIndex+(grid.cellSize.x/2),0, zIndex + (grid.cellSize.y / 2))));
+                var gridRot = Quaternion.Euler(new Vector3(90, 0, 45));
+                Debug.Log(gridRot.eulerAngles);
+                var mid = Instantiate(gridTile, grid.GetCellCenterWorld(gridPos), gridRot, tileContainer);
+                var diag = Instantiate(gridTile, grid.GetCellCenterWorld(diagGridPos), gridRot, tileContainer);
+                mid.transform.rotation = gridRot;
+                //Debug.Log(grid.GetCellCenterWorld(gridPos));
                 mid.name = grid.GetCellCenterWorld(gridPos).ToString();
                 diag.name = grid.GetCellCenterWorld(diagGridPos).ToString();
                 gridTiles.Add(grid.GetCellCenterWorld(gridPos), mid);
@@ -48,13 +56,19 @@ public class BuildGridManager : MonoBehaviour
         {
             foreach(Vector2 key in gridTiles.Keys)
             {
-                DestroyImmediate(gridTiles[key]);
+                if (gridTiles.ContainsKey(key))
+                {
+                    DestroyImmediate(gridTiles[key]);
+                }
             }
             gridTiles.Clear();
         }
-        foreach (Transform t in tileContainer.transform)
+        while (tileContainer.childCount > 0)
         {
-            DestroyImmediate(t.gameObject);
+            foreach (Transform t in tileContainer.transform)
+            {
+                DestroyImmediate(t.gameObject);
+            }
         }
     }
     public static GridTile GetTile(Vector2 location)
