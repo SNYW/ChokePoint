@@ -7,16 +7,13 @@ public class GridBuildingSystem : MonoBehaviour
     public PlayerEconomy playerEconomy;
     public Grid grid;
     public Transform buildCursor;
-    public SpriteRenderer buildCursorSprite;
+    public MeshFilter buildCursorMesh;
     public GameObject selectedBuilding;
     public float buildAreaRadius;
     public LayerMask mask;
-    Vector2 mousePosition;
-    Vector3Int gridPos;
     public bool deleteMode;
     public GridTile currentTile;
 
-    private int sortingOrderBase = 0;
     private void Start()
     {
         selectedBuilding = null;
@@ -25,16 +22,18 @@ public class GridBuildingSystem : MonoBehaviour
     }
     void Update()
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int gridPos = (grid.LocalToCell(mousePosition));
-        //Debug.Log(BuildGridManager.gridTiles.ContainsKey(grid.GetCellCenterLocal(gridPos)));
-        if (BuildGridManager.gridTiles.ContainsKey(grid.GetCellCenterLocal(gridPos)))
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hitData, 1000))
         {
-            currentTile = BuildGridManager.GetTile(grid.GetCellCenterLocal(gridPos));
-        }
-        else
-        {
-            currentTile = null;
+            var selectedObject = hitData.transform.gameObject;
+            if (null != selectedObject.GetComponent<GridTile>())
+            {
+                currentTile = selectedObject.GetComponent<GridTile>();
+            }
+            else
+            {
+                currentTile = null;
+            }
         }
         if (selectedBuilding != null && currentTile !=null)
         {
@@ -69,7 +68,7 @@ public class GridBuildingSystem : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
-                DeleteBuilding(grid.GetCellCenterLocal(gridPos));
+                DeleteBuilding(grid.GetCellCenterLocal(grid.WorldToCell(currentTile.transform.position)));
                 deleteMode = false;
             }
         }else
@@ -82,9 +81,7 @@ public class GridBuildingSystem : MonoBehaviour
     {
         HideBuildArea();
         buildCursor.gameObject.SetActive(true);
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        gridPos = (grid.LocalToCell(mousePosition));
-        buildCursor.position = (Vector2)grid.GetCellCenterLocal(gridPos);
+        buildCursor.position = grid.GetCellCenterWorld(grid.WorldToCell(currentTile.transform.position));
         ShowBuildArea();
     }
 
@@ -92,9 +89,9 @@ public class GridBuildingSystem : MonoBehaviour
     {
         this.selectedBuilding = toBuild;
     }
-    public void SetCursorImage(Sprite sprite)
+    public void SetCursorImage(Mesh mesh)
     {
-       buildCursorSprite.sprite = sprite;
+       buildCursorMesh.sharedMesh = mesh;
     }
 
     public void SetDeleteMode()
@@ -110,10 +107,11 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Build()
     {
-        var tile = BuildGridManager.GetTile(grid.GetCellCenterLocal(gridPos));
+        var tile = currentTile;
         if (tile.buildable && playerEconomy.currentResource - selectedBuilding.GetComponent<Building>().buildCost >= 0)
         {
-            var building = Instantiate(selectedBuilding, (Vector2)grid.GetCellCenterLocal(gridPos), quaternion.identity);
+            Debug.Log("Building on " + currentTile.name);
+            var building = Instantiate(selectedBuilding, grid.GetCellCenterWorld(grid.WorldToCell(currentTile.transform.position)), quaternion.identity);
             var buildingComponent = building.GetComponent<Building>();
             if (buildingComponent.playerOwned)
             {
@@ -123,19 +121,19 @@ public class GridBuildingSystem : MonoBehaviour
             {
                 MapDataManager.Add(MapDataManager.enemyBuildings, building.transform);
             }
-            building.GetComponentInChildren<SpriteRenderer>().sortingOrder = (sortingOrderBase - gridPos.x) - gridPos.y;
             playerEconomy.currentResource -= building.GetComponent<Building>().buildCost;
             tile.building = building;
             tile.buildable = false;
         }
         else
         {
+            Debug.Log("Can't Build on " + currentTile.name + "||"+ tile.buildable);
             ResetBuildState();
         }
     }
     private void HideBuildArea()
     {
-        foreach (Vector2 tile in BuildGridManager.gridTiles.Keys)
+        foreach (Vector3 tile in BuildGridManager.gridTiles.Keys)
         {
             BuildGridManager.gridTiles[tile].GetComponent<GridTile>().SetInactive();
         }
@@ -161,7 +159,7 @@ public class GridBuildingSystem : MonoBehaviour
         return canBuild && !EventSystem.current.IsPointerOverGameObject();
     }
 
-    private void DeleteBuilding(Vector2 position)
+    private void DeleteBuilding(Vector3 position)
     {
         BuildGridManager.GetTile(position).DeleteBuilding();
     }

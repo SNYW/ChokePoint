@@ -6,12 +6,12 @@ public class DorkManaGenerator : ResourceGenerator
     public int storageIncrease;
     private void Awake()
     {
+        manaEconomy = GameObject.Find("PlayerBase").GetComponent<ManaEconomy>();
         IncreaseIncome();
         IncreaseStorage();
     }
     private void IncreaseStorage()
     {
-        manaEconomy = GameObject.Find("PlayerBase").GetComponent<ManaEconomy>();
         manaEconomy.storageMax += storageIncrease;
     }
     private void OnDestroy()

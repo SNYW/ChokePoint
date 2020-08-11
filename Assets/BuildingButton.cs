@@ -8,7 +8,7 @@ public class BuildingButton : MonoBehaviour
     public GameObject building;
     public Color buildableColour;
     public Color unbuildableColour;
-    public Sprite cursorSprite;
+    public Mesh cursorMesh;
     private Image button;
     private bool buildable;
     private int cost;
@@ -17,6 +17,7 @@ public class BuildingButton : MonoBehaviour
     {
         cost = building.GetComponent<Building>().buildCost;
         button = GetComponent<Image>();
+        cursorMesh = building.GetComponent<MeshFilter>().sharedMesh;
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class BuildingButton : MonoBehaviour
         if (buildable)
         {
             gridBuildingSystem.SetSelectedBuilding(building);
-            gridBuildingSystem.SetCursorImage(cursorSprite);
+            gridBuildingSystem.SetCursorImage(cursorMesh);
         }
     }
 }

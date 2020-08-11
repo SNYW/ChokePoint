@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer),typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer),typeof(Collider))]
 public class GridTile : MonoBehaviour
 {
     private new SpriteRenderer renderer;

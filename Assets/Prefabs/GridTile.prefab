@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 436571540912820421}
   - component: {fileID: 9183271987014099387}
   - component: {fileID: -1513615269903669325}
-  - component: {fileID: 7118947156813516612}
+  - component: {fileID: 6707171458815716732}
   m_Layer: 0
   m_Name: GridTile
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 436571540912820420}
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: -25.07, y: -0.643, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
+  m_LocalScale: {x: 0.16, y: 0.16, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,37 +99,16 @@ MonoBehaviour:
   buildableColour: {r: 0.4764596, g: 0.7830189, b: 0.48801783, a: 0.48235294}
   notBuildableColour: {r: 0.8773585, g: 0.36832502, b: 0.36832502, a: 0.49019608}
   building: {fileID: 0}
---- !u!60 &7118947156813516612
-PolygonCollider2D:
+--- !u!65 &6707171458815716732
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436571540912820420}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9, y: 9}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.057813644, y: 0.1923011}
-      - {x: -0.47891045, y: 0.0069203973}
-      - {x: -0.47589493, y: -0.02890718}
-      - {x: -0.037168503, y: -0.22634089}
-      - {x: 0.026788712, y: -0.23538071}
-      - {x: 0.25134087, y: -0.13281435}
-      - {x: 0.49095917, y: -0.019420505}
-      - {x: 0.47890663, y: 0.011274576}
-      - {x: 0.053012848, y: 0.19531435}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.000001, y: 9.000001, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}

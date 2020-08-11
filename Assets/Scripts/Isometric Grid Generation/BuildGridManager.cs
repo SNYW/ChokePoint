@@ -26,22 +26,16 @@ public class BuildGridManager : MonoBehaviour
         gridTiles = new Dictionary<Vector3, GameObject>();
         ClearGrid();
         grid = GetComponent<Grid>();
-        Debug.Log(minBounds.x +" "+ maxBounds.x);
-
-        Debug.Log(minBounds.y + " " + maxBounds.y);
         for (float xIndex = minBounds.x; xIndex < maxBounds.x; xIndex += grid.cellSize.x)
         {
             for (float zIndex = minBounds.y; zIndex < maxBounds.y; zIndex += grid.cellSize.y)
             {
-               // Debug.Log(new Vector3(xIndex, 0, zIndex));
                 Vector3Int gridPos = (grid.WorldToCell(new Vector3(xIndex, 0, zIndex)));
                 Vector3Int diagGridPos = (grid.WorldToCell(new Vector3(xIndex+(grid.cellSize.x/2),0, zIndex + (grid.cellSize.y / 2))));
                 var gridRot = Quaternion.Euler(new Vector3(90, 0, 45));
-                Debug.Log(gridRot.eulerAngles);
                 var mid = Instantiate(gridTile, grid.GetCellCenterWorld(gridPos), gridRot, tileContainer);
                 var diag = Instantiate(gridTile, grid.GetCellCenterWorld(diagGridPos), gridRot, tileContainer);
                 mid.transform.rotation = gridRot;
-                //Debug.Log(grid.GetCellCenterWorld(gridPos));
                 mid.name = grid.GetCellCenterWorld(gridPos).ToString();
                 diag.name = grid.GetCellCenterWorld(diagGridPos).ToString();
                 gridTiles.Add(grid.GetCellCenterWorld(gridPos), mid);
@@ -82,16 +76,18 @@ public class BuildGridManager : MonoBehaviour
         }
         return null;
     }
+    private void OnDrawGizmos()
+    {
+        
+    }
 
     public static List<GridTile> GetTileNeighbours(GridTile origin, int factor)
     {
         List<GridTile> neighbours = new List<GridTile>();
-        neighbours.Add(GetTile(grid.GetCellCenterLocal(grid.LocalToCell(origin.transform.position))));
-        //Debug.Log("Origin = " + grid.GetCellCenterLocal(grid.LocalToCell(origin.transform.position)));
         if (origin != null)
         {
-            Collider2D[] coll = Physics2D.OverlapCircleAll(origin.transform.position, 0.6f);
-            foreach(Collider2D tile in coll)
+            Collider[] coll = Physics.OverlapSphere(origin.transform.position, 1f);
+            foreach(Collider tile in coll)
             {
                 if(tile.GetComponent<GridTile>() != null)
                 {
@@ -100,5 +96,6 @@ public class BuildGridManager : MonoBehaviour
             }
         }
         return neighbours;
+        
     }
 }
