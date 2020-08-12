@@ -18,9 +18,9 @@ public class BunkerDamageSystem : DamageSystem
     }
     public override void DealDamage()
     {
-        Collider2D[] aoeHit = Physics2D.OverlapCircleAll(bunker.target.transform.position, bunker.attackArea);
+        Collider[] aoeHit = Physics.OverlapSphere(bunker.target.transform.position, bunker.attackArea);
         Debug.DrawLine(bunker.transform.position, bunker.target.transform.position);
-        foreach (Collider2D enemy in aoeHit)
+        foreach (Collider enemy in aoeHit)
         {
             var unit = enemy.GetComponent<Unit>();
             if (unit != null && unit.playerOwned != bunker.playerOwned)

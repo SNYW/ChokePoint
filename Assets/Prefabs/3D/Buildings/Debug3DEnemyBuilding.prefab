@@ -196,9 +196,10 @@ GameObject:
   - component: {fileID: 7873735335898579190}
   - component: {fileID: 1564409771969124510}
   - component: {fileID: 7015320791162977146}
-  - component: {fileID: 3545065246321187620}
+  - component: {fileID: 6200126851554967907}
+  - component: {fileID: -7139519299242195791}
   m_Layer: 0
-  m_Name: DorkGenerator
+  m_Name: Debug3DEnemyBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +227,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2290290318899677011}
-  m_Mesh: {fileID: -4436129926603438393, guid: f8a30daf5633a2b46ab75e30e1cb5fe9, type: 3}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1564409771969124510
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -279,7 +280,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3545065246321187620
+--- !u!114 &6200126851554967907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,18 +289,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 2290290318899677011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd26424a40faf543af0aed52b44ed03, type: 3}
+  m_Script: {fileID: 11500000, guid: d74e01f44c7563744b09c995493e5e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOwned: 1
-  buildingName: DorkManaGenerator
-  maxHealth: 500
-  currentHealth: 500
+  playerOwned: 0
+  buildingName: DorkPortal
+  maxHealth: 1000
+  currentHealth: 1000
   buildCost: 1
   healthbar: {fileID: 3893893203436050284}
-  playerEconomy: {fileID: 0}
-  rateIncrease: 5
-  storageIncrease: 20
+  unitName: DebugEnemyUnit3D
+  playerUnit: 0
+  cursorImage: {fileID: 0}
+--- !u!114 &-7139519299242195791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290290318899677011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be42baf36125604e9cd511af06e597e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3254427138177508056
 GameObject:
   m_ObjectHideFlags: 0

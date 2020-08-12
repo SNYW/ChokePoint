@@ -23,7 +23,6 @@ public class DefaultDamageSystem : DamageSystem
         {
             unit.currentHealth -= amount;
             if (unit.currentHealth <= 0) { unit.Die(); }
-            //Debug.Log(unit.currentHealth / unit.maxHealth);
             unit.healthBar.value = unit.currentHealth / unit.maxHealth;
         }
     }

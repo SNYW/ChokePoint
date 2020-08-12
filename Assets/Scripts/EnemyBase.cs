@@ -37,7 +37,7 @@ public class EnemyBase : MonoBehaviour
         buildings = GetWaveBuildings();
         foreach (GameObject building in buildings)
         {
-            Vector2 randomBuildLocation = new Vector3(Random.Range(buildAreaMin.x, buildAreaMax.x), 0, Random.Range(buildAreaMin.y, buildAreaMax.y));
+            Vector3 randomBuildLocation = new Vector3(Random.Range(buildAreaMin.x, buildAreaMax.x), 0, Random.Range(buildAreaMin.y, buildAreaMax.y));
             Vector3Int gridPos = (grid.WorldToCell(randomBuildLocation));
             var buildLocation = grid.GetCellCenterLocal(gridPos);
             var instBuilding = Instantiate(building, BuildGridManager.GetTile(buildLocation).transform.position, Quaternion.identity);

@@ -21,13 +21,13 @@ public class DebugMovementSystem : MovementSystem
     {
         if(unit.target == null)
         {
-          transform.position = Vector2.MoveTowards(transform.position, defaultTargetPosition.position, unit.moveSpeed * Time.deltaTime) ;
+          transform.position = Vector3.MoveTowards(transform.position, defaultTargetPosition.position, unit.moveSpeed * Time.deltaTime) ;
         }
         else
         {
-            if(Vector2.Distance(transform.position, unit.target.transform.position) > unit.attackRange)
+            if(Vector3.Distance(transform.position, unit.target.transform.position) > unit.attackRange)
             {
-                transform.position = Vector2.MoveTowards(transform.position, unit.target.transform.position, unit.moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, unit.target.transform.position, unit.moveSpeed * Time.deltaTime);
             }
         }
     }

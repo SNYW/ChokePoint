@@ -110,7 +110,6 @@ public class GridBuildingSystem : MonoBehaviour
         var tile = currentTile;
         if (tile.buildable && playerEconomy.currentResource - selectedBuilding.GetComponent<Building>().buildCost >= 0)
         {
-            Debug.Log("Building on " + currentTile.name);
             var building = Instantiate(selectedBuilding, grid.GetCellCenterWorld(grid.WorldToCell(currentTile.transform.position)), quaternion.identity);
             var buildingComponent = building.GetComponent<Building>();
             if (buildingComponent.playerOwned)

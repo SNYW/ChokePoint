@@ -37,7 +37,7 @@ public class BunkerCombatSystem : CombatSystem
     public override bool CanAttack(Transform target)
     {
         attackCooldown -= Time.deltaTime;
-        return attackCooldown <= 0 && Vector2.Distance(transform.position, target.position) < bunker.range;
+        return attackCooldown <= 0 && Vector3.Distance(transform.position, target.position) < bunker.range;
     }
 
     protected GameObject GetClosestTarget()
@@ -85,7 +85,7 @@ public class BunkerCombatSystem : CombatSystem
 
     public override bool CanSee(Transform target)
     {
-        return Vector2.Distance(transform.position, target.position) < bunker.range;
+        return Vector3.Distance(transform.position, target.position) < bunker.range;
     }
 
     public override GameObject GetTarget()

@@ -76,7 +76,7 @@ public class MapDataManager : MonoBehaviour
 
             foreach (Transform t in targetTree)
             {
-                if (Vector2.Distance(origin.position, t.position) < Vector2.Distance(origin.position, closest.transform.position))
+                if (Vector3.Distance(origin.position, t.position) < Vector3.Distance(origin.position, closest.transform.position))
                 {
                     closest = t;
                 }
