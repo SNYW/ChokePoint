@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 7015320791162977146}
   - component: {fileID: 3545065246321187620}
   - component: {fileID: -7043034125614806543}
+  - component: {fileID: -4361937492384444472}
   m_Layer: 0
   m_Name: DorkGenerator3D
   m_TagString: Untagged
@@ -313,6 +314,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be42baf36125604e9cd511af06e597e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &-4361937492384444472
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290290318899677011}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.6, y: 1.05, z: 0.6}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3254427138177508056
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +357,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3254427138177508056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.125}
   m_LocalScale: {x: 2, y: 3, z: 1}
   m_Children:
   - {fileID: 1962906378332167258}
@@ -349,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.92}
+  m_AnchoredPosition: {x: 0, y: 2.359}
   m_SizeDelta: {x: 0.6171851, y: 0.12256998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8572517786807971686
