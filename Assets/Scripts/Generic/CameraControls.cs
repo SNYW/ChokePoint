@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
@@ -6,13 +7,27 @@ public class CameraControls : MonoBehaviour
     public Vector3 maxCam;
     public Vector3 minCam;
 
+    public Vector3 mobaOffsets;
+
     void Update()
+    {
+        if (GameManager.gm.RTSMode)
+        {
+            MoveCameraRTS();
+        }
+        else
+        {
+            MoveCameraMoba();
+        }
+    }
+
+    public void MoveCameraRTS()
     {
         Vector3 pos = transform.position;
 
         if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
-            pos.z += panRate *Time.deltaTime;
+            pos.z += panRate * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= panBorderThickness)
         {
@@ -27,11 +42,16 @@ public class CameraControls : MonoBehaviour
             pos.x += panRate * Time.deltaTime;
         }
 
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        Camera main = Camera.main.GetComponent<Camera>();
-       // pos.y -= Mathf.Clamp(pos.y scroll * zoomRate * 100 * Time.deltaTime, 0, maxCam.y);
         pos.x = Mathf.Clamp(pos.x, minCam.x, maxCam.x);
         pos.z = Mathf.Clamp(pos.z, minCam.z, maxCam.z);
+        pos.y = 13.6f;
         transform.position = pos;
+    }
+    
+    public void MoveCameraMoba()
+    {
+        var targetpos = GameManager.gm.selectedUnit.transform.position;
+        var offsetpos = targetpos + mobaOffsets;
+        transform.position = new Vector3(offsetpos.x, offsetpos.y, offsetpos.z);
     }
 }

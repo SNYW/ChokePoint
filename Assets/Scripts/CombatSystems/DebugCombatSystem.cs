@@ -13,7 +13,8 @@ public class DebugCombatSystem : CombatSystem
     }
     public override void ManageAttack()
     {
-        if (GetClosestTarget() != null && CanSee(GetClosestTarget().transform) && GetClosestTarget().activeSelf)
+        var closest = GetClosestTarget();
+        if (closest != null && CanSee(closest.transform) && closest.activeSelf)
         {
             unit.target = GetClosestTarget();
             if (CanAttack(unit.target.transform) && unit.target != null)

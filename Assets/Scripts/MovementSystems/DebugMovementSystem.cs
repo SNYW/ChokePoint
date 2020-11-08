@@ -3,7 +3,7 @@
 public class DebugMovementSystem : MovementSystem
 {
     private Transform defaultTargetPosition;
-    private Unit unit;
+    private new Unit unit;
     private void Start()
     {
         unit = GetComponent<Unit>();

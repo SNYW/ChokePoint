@@ -38,6 +38,7 @@ public class GridBuildingSystem : MonoBehaviour
         if (selectedBuilding != null && currentTile !=null)
         {
             deleteMode = false;
+            GameManager.gm.playerBuilding = true;
             ShowBuildCursor();
             if (Input.GetMouseButtonDown(0))
             {
@@ -62,6 +63,7 @@ public class GridBuildingSystem : MonoBehaviour
         else if(deleteMode)
         {
             selectedBuilding = null;
+            GameManager.gm.playerBuilding = true;
             if(currentTile != null)
             {
                 HideBuildArea();
@@ -73,6 +75,7 @@ public class GridBuildingSystem : MonoBehaviour
             }
         }else
         {
+            GameManager.gm.playerBuilding = false;
             buildCursor.gameObject.SetActive(false);
         }
     }
